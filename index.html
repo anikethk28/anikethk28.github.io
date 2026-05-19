@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniketh Reddy Konda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 4em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #a8c0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #a8c0ff;
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95em;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-links a:hover {
+            background: rgba(168, 192, 255, 0.3);
+            border-color: rgba(168, 192, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(168, 192, 255, 0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 50px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(168, 192, 255, 0.4);
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+        .section:nth-child(8) { animation-delay: 0.7s; }
+
+        h2 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #302b63 0%, #24243e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #2c2c2c;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .experience-item,
+        .project-item,
+        .education-item,
+        .leadership-item {
+            margin-bottom: 35px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fafaff 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leadership-item {
+            border-left-color: #764ba2;
+            margin-bottom: 20px;
+        }
+
+        .experience-item::before,
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .experience-item:hover::before,
+        .project-item:hover::before { opacity: 1; }
+
+        .experience-item:hover,
+        .project-item:hover,
+        .education-item:hover,
+        .leadership-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            border-left-color: #764ba2;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .meta {
+            color: #667eea;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .description {
+            color: #444;
+            line-height: 1.7;
+            font-size: 0.98em;
+        }
+
+        .description ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .description ul li {
+            margin-bottom: 6px;
+        }
+
+        .tech-stack {
+            color: #764ba2;
+            font-size: 0.9em;
+            margin-top: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-stack::before {
+            content: '⚡';
+            font-size: 1.2em;
+        }
+
+        .project-links {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-links a {
+            font-size: 0.88em;
+            color: #667eea;
+            text-decoration: none;
+            padding: 5px 14px;
+            border: 1px solid #667eea;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .project-links a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .skill-category h4 {
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .skill-category p {
+            font-size: 0.92em;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cert-item {
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #fafaff 100%);
+            border-radius: 12px;
+            border: 2px solid #e8ecff;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cert-item::before {
+            content: '🏆';
+            font-size: 2em;
+            position: absolute;
+            top: 20px; right: 20px;
+            opacity: 0.3;
+        }
+
+        .cert-item:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .cert-title {
+            font-size: 1.05em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .cert-issuer {
+            font-size: 0.9em;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .cert-date {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #2c2c2c;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px dashed rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 40px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p { margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 40px 20px; }
+            h1 { font-size: 2.5em; }
+            .subtitle { font-size: 1.1em; }
+            .section { padding: 30px 25px; }
+            .about-content { grid-template-columns: 1fr; }
+            .skills-grid, .cert-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+            <h1>Aniketh Reddy Konda</h1>
+            <p class="subtitle">Machine Learning Engineer &bull; AI/ML Researcher &bull; AWS Certified</p>
+            <div class="contact-links">
+                <a href="mailto:anikethreddy2828@gmail.com">&#128231; Email</a>
+                <a href="tel:+13127093108">&#128241; Call Me</a>
+                <a href="https://www.linkedin.com/in/anikethk28" target="_blank">&#128188; LinkedIn</a>
+                <a href="https://github.com/anikethk28" target="_blank">&#128187; GitHub</a>
+                <a href="https://maps.google.com/?q=Chicago,IL" target="_blank">&#128205; Chicago, IL</a>
+            </div>
+        </header>
+
+        <!-- About -->
+        <div class="section">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a Machine Learning Engineer passionate about building scalable AI/ML systems that
+                        create measurable real-world impact. With a strong foundation in predictive modeling,
+                        deep learning, and retrieval-augmented generation, I specialize in turning complex data
+                        problems into production-ready solutions.
+                    </p>
+                    <p>
+                        My work spans building high-accuracy healthcare prediction models, engineering
+                        subsurface detection systems with ResNet-50, and developing LLM-powered research tools
+                        using LangChain and FAISS. I thrive at the intersection of rigorous ML research and
+                        practical software engineering — from data pipeline to deployment.
+                    </p>
+                    <p>
+                        Currently pursuing my MS in Computer Science at Illinois Institute of Technology
+                        (GPA: 3.66), I hold an AWS Certified Machine Learning Engineer – Associate certification
+                        and have led large-scale initiatives for 200+ attendees. I'm actively seeking ML
+                        Engineering or Data Science roles where I can ship impactful, intelligent systems.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <span class="stat-number">99.7%</span>
+                        <span class="stat-label">Accuracy — Heart Failure Detection Model</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Reduction in False Positives</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">10K+</span>
+                        <span class="stat-label">Data Points Processed Monthly</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">3.66</span>
+                        <span class="stat-label">Graduate GPA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <h3>Python Developer</h3>
+                <p class="meta">SmartIMS &mdash; August 2023 – March 2024</p>
+                <div class="description">
+                    <ul>
+                        <li>Developed a Flask-based data capture pipeline integrating RESTful APIs and webhooks, enabling real-time consumer health data collection handling <span class="highlight">10K+ data points</span> monthly.</li>
+                        <li>Designed scalable solutions with Python &amp; SQLAlchemy, supporting 50+ end users across analytical workflows.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; Flask &bull; RESTful APIs &bull; Webhooks &bull; SQLAlchemy &bull; SQL</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Machine Learning Engineer</h3>
+                <p class="meta">PanaceAI &mdash; October 2022 – December 2022</p>
+                <div class="description">
+                    <ul>
+                        <li>Engineered a ResNet-50 model integrated with GPR data, enhancing subsurface metal detection accuracy by <span class="highlight">25%</span> through improved feature extraction capabilities.</li>
+                        <li>Applied wavelet transforms and data augmentation, reducing false positives by <span class="highlight">40%</span> and optimizing hyperparameters to minimize unnecessary excavations for a 20-person team.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; ResNet-50 &bull; TensorFlow &bull; Wavelet Transforms &bull; Data Augmentation</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Data Engineer Intern</h3>
+                <p class="meta">Swecha &mdash; October 2021 – November 2021</p>
+                <div class="description">
+                    <ul>
+                        <li>Extracted raw data into structured CSV formats using Pandas and Regex, processing <span class="highlight">5K+ datasets</span> to enable statistical insights for 10 stakeholders.</li>
+                        <li>Generated Excel charts and pivot tables from processed data, supporting data-driven strategies with clear visualizations.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; Pandas &bull; Regex &bull; Data Visualization &bull; Excel</p>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section">
+            <h2>Featured Projects</h2>
+
+            <div class="project-item">
+                <h3>Federated Learning with Graph Neural Networks</h3>
+                <p class="meta">Privacy-Preserving Distributed ML</p>
+                <div class="description">
+                    <ul>
+                        <li>Developed a privacy-preserving federated learning framework where 10+ simulated clients collaboratively train local GNN models on partitioned graph data, improving global node classification accuracy by <span class="highlight">8%</span> over non-federated baselines.</li>
+                        <li>Implemented FedAvg-style aggregation and centralized evaluation pipeline in Jupyter, reducing experimentation time by 25% while ensuring no raw node or edge features are shared between clients.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; GNN &bull; Federated Learning &bull; FedAvg &bull; Jupyter</p>
+                <div class="project-links">
+                    <a href="https://github.com/anikethk28/Federated_Learning_GNN" target="_blank">&#128279; GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>StarBot: News Research Tool</h3>
+                <p class="meta">LLM &bull; LangChain &bull; OpenAI &bull; RAG</p>
+                <div class="description">
+                    <ul>
+                        <li>Developed StarBot with LangChain and OpenAI API, integrating Streamlit UI to process 100+ URLs daily, delivering financial insights via RAG and FAISS vector search.</li>
+                        <li>Optimized data pipelines with Pandas and Scikit-Learn, reducing research time by <span class="highlight">30%</span> for equity analysts using Hugging Face transformers.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">LangChain &bull; OpenAI API &bull; FAISS &bull; Streamlit &bull; Hugging Face &bull; Python</p>
+            </div>
+
+            <div class="project-item">
+                <h3>Early Heart Failure Detection with Stacking Classifier</h3>
+                <p class="meta">Python &bull; Machine Learning &bull; Healthcare AI</p>
+                <div class="description">
+                    <ul>
+                        <li>Built a high-accuracy ML system using a Stacking Classifier (Random Forest, Decision Tree, LightGBM), achieving <span class="highlight">99.7% accuracy</span> on a 5K-record dataset with 8 attributes.</li>
+                        <li>Implemented PCHF feature engineering, enhancing data exploration and outperforming conventional models for early disease detection.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; Scikit-Learn &bull; LightGBM &bull; Random Forest &bull; Feature Engineering</p>
+            </div>
+
+            <div class="project-item">
+                <h3>Bitcoin Price Prediction with Deep Learning</h3>
+                <p class="meta">Deep Learning &bull; Time Series Forecasting</p>
+                <div class="description">
+                    <ul>
+                        <li>Built a deep learning model to forecast Bitcoin price movements using historical market data and time-series analysis techniques.</li>
+                        <li>Employed neural network architectures for sequence modeling to capture complex temporal dependencies in cryptocurrency markets.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; TensorFlow &bull; Deep Learning &bull; Time Series &bull; Jupyter</p>
+                <div class="project-links">
+                    <a href="https://github.com/anikethk28/Bitcoin-Prediction-Using-Deep-Learning-" target="_blank">&#128279; GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>Building GPT From Scratch</h3>
+                <p class="meta">LLM Architecture &bull; Transformer Design</p>
+                <div class="description">
+                    <ul>
+                        <li>Implemented a GPT-style transformer model from scratch, including multi-head self-attention, positional embeddings, layer normalization, and feedforward networks.</li>
+                        <li>Trained on custom text datasets to understand language modeling objectives, loss convergence, and perplexity evaluation.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; PyTorch &bull; Transformers &bull; LLM Architecture &bull; Jupyter</p>
+                <div class="project-links">
+                    <a href="https://github.com/anikethk28/Building-GTP-From-Scratch-" target="_blank">&#128279; GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>RAG-Based Academic Advisor</h3>
+                <p class="meta">Retrieval-Augmented Generation &bull; LLM</p>
+                <div class="description">
+                    <ul>
+                        <li>Designed a retrieval-augmented generation system that answers academic advising questions by retrieving relevant course and policy documents using vector embeddings.</li>
+                        <li>Integrated document ingestion, chunking, and semantic search to enable context-aware, grounded responses for students.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; LangChain &bull; FAISS &bull; OpenAI API &bull; RAG</p>
+                <div class="project-links">
+                    <a href="https://github.com/anikethk28/RAG-Based-Academic-Advisor-" target="_blank">&#128279; GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>Sentiment Analysis for Stock Price Prediction</h3>
+                <p class="meta">NLP &bull; Financial ML</p>
+                <div class="description">
+                    <ul>
+                        <li>Combined NLP-based sentiment analysis of financial news with stock price data to build a predictive model for market movement.</li>
+                        <li>Applied transformer-based embeddings and classical ML regressors to surface sentiment-driven signals from text corpora.</li>
+                    </ul>
+                </div>
+                <p class="tech-stack">Python &bull; NLP &bull; Transformers &bull; Scikit-Learn &bull; Pandas</p>
+                <div class="project-links">
+                    <a href="https://github.com/anikethk28/Sentiment_Analysis_Stock_Price" target="_blank">&#128279; GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <p>Python, SQL, JavaScript, HTML, CSS, C, R</p>
+                </div>
+                <div class="skill-category">
+                    <h4>AI &amp; Machine Learning</h4>
+                    <p>TensorFlow, Scikit-Learn, XGBoost, LightGBM, LangChain, RAG, LLMs (OpenAI, Hugging Face), Transformers, FAISS</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Data Science</h4>
+                    <p>Pandas, NumPy, Seaborn, Matplotlib, Statistical Modeling, Predictive Modeling, EDA, Data Visualization</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Backend &amp; APIs</h4>
+                    <p>Flask, RESTful APIs, SQLAlchemy, Webhooks, API Integration, Data Pipelines</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Cloud &amp; Infrastructure</h4>
+                    <p>AWS (Certified MLE-A), Model Deployment, Cloud-Native ML, Streamlit</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Foundations</h4>
+                    <p>Oracle SQL, Data Structures &amp; Algorithms, Statistical Modeling, Foundational AI/ML Concepts</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="section">
+            <h2>Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <div class="cert-title">AWS Certified Machine Learning Engineer &mdash; Associate</div>
+                    <div class="cert-issuer">Amazon Web Services</div>
+                    <div class="cert-date">August 2025</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section">
+            <h2>Education</h2>
+
+            <div class="education-item">
+                <h3>M.S. in Computer Science</h3>
+                <p class="meta">Illinois Institute of Technology &mdash; January 2025 – December 2026 &mdash; GPA: 3.66 / 4.0</p>
+                <p class="description">Chicago, Illinois</p>
+            </div>
+
+            <div class="education-item">
+                <h3>B.E. in Computer Science</h3>
+                <p class="meta">Chaitanya Bharathi Institute of Technology &mdash; August 2020 – May 2024 &mdash; GPA: 8.6 / 10.0</p>
+                <p class="description">India</p>
+            </div>
+
+            <div class="cta-section">
+                <a href="mailto:anikethreddy2828@gmail.com" class="cta-button">Let's Build Something Amazing Together</a>
+            </div>
+        </div>
+
+        <!-- Leadership -->
+        <div class="section">
+            <h2>Leadership &amp; Initiatives</h2>
+
+            <div class="leadership-item">
+                <h3>Head of Operations &amp; Co-Founder &mdash; Saga.events</h3>
+                <p class="meta">December 2023 – January 2024</p>
+                <p class="description">Led a team of five to organize a Flea Carnival with diverse vendor stalls. Managed end-to-end logistics and coordination, ensuring a smooth and successful event for vendors and attendees.</p>
+            </div>
+
+            <div class="leadership-item">
+                <h3>Head of Logistics &mdash; CBIT Model UN Conference</h3>
+                <p class="meta">May 2023</p>
+                <p class="description">Oversaw conference logistics for <span class="highlight">200+ attendees</span>, managing delegate registration, accommodations, transportation, and venue coordination to ensure a seamless experience.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Open to full-time ML Engineering &amp; Data Science opportunities</strong></p>
+            <p>Passionate about LLMs, RAG systems, predictive ML, and building impactful AI-driven products.</p>
+            <p>&copy; 2026 Aniketh Reddy Konda</p>
+        </footer>
+    </div>
+</body>
+</html>
