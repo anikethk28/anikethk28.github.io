@@ -56,6 +56,22 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(168, 192, 255, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(168, 192, 255, 0.6);
+        }
+
         h1 {
             font-size: 4em;
             font-weight: 800;
@@ -457,12 +473,13 @@
 
         <!-- Header -->
         <header>
+            <img src="profile.png" alt="Aniketh Reddy Konda" class="profile-photo">
             <h1>Aniketh Reddy Konda</h1>
             <p class="subtitle">Machine Learning Engineer &bull; AI/ML Researcher &bull; AWS Certified</p>
             <div class="contact-links">
                 <a href="mailto:anikethreddy2828@gmail.com">&#128231; Email</a>
                 <a href="tel:+13127093108">&#128241; Call Me</a>
-                <a href="https://www.linkedin.com/in/anikethk28" target="_blank">&#128188; LinkedIn</a>
+                <a href="https://www.linkedin.com/in/aniketh-reddy-352b65262" target="_blank">&#128188; LinkedIn</a>
                 <a href="https://github.com/anikethk28" target="_blank">&#128187; GitHub</a>
                 <a href="https://maps.google.com/?q=Chicago,IL" target="_blank">&#128205; Chicago, IL</a>
             </div>
@@ -495,7 +512,7 @@
                 <div class="about-stats">
                     <div class="stat-card">
                         <span class="stat-number">99.7%</span>
-                        <span class="stat-label">Accuracy — Heart Failure Detection Model</span>
+                        <span class="stat-label">Accuracy for Heart Failure Detection Model</span>
                     </div>
                     <div class="stat-card">
                         <span class="stat-number">40%</span>
@@ -506,7 +523,7 @@
                         <span class="stat-label">Data Points Processed Monthly</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number">3.66</span>
+                        <span class="stat-number">3.8</span>
                         <span class="stat-label">Graduate GPA</span>
                     </div>
                 </div>
@@ -519,7 +536,7 @@
 
             <div class="experience-item">
                 <h3>Python Developer</h3>
-                <p class="meta">SmartIMS &mdash; August 2023 – March 2024</p>
+                <p class="meta">SmartIMS :; August 2023 - August 2024</p>
                 <div class="description">
                     <ul>
                         <li>Developed a Flask-based data capture pipeline integrating RESTful APIs and webhooks, enabling real-time consumer health data collection handling <span class="highlight">10K+ data points</span> monthly.</li>
@@ -531,7 +548,7 @@
 
             <div class="experience-item">
                 <h3>Machine Learning Engineer</h3>
-                <p class="meta">PanaceAI &mdash; October 2022 – December 2022</p>
+                <p class="meta">PanaceAI :; October 2022 - March 2023</p>
                 <div class="description">
                     <ul>
                         <li>Engineered a ResNet-50 model integrated with GPR data, enhancing subsurface metal detection accuracy by <span class="highlight">25%</span> through improved feature extraction capabilities.</li>
@@ -543,7 +560,7 @@
 
             <div class="experience-item">
                 <h3>Data Engineer Intern</h3>
-                <p class="meta">Swecha &mdash; October 2021 – November 2021</p>
+                <p class="meta">Swecha :; October 2021 - November 2021</p>
                 <div class="description">
                     <ul>
                         <li>Extracted raw data into structured CSV formats using Pandas and Regex, processing <span class="highlight">5K+ datasets</span> to enable statistical insights for 10 stakeholders.</li>
