@@ -615,17 +615,35 @@
         .proj-accent-box {
             border-radius: 28px;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.5rem;
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
         }
         @media (min-width: 640px) { .proj-accent-box { border-radius: 36px; } }
         @media (min-width: 768px) { .proj-accent-box { border-radius: 46px; } }
 
-        .proj-chips-in-card { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .proj-svg-wrap {
+            position: absolute;
+            inset: 1.25rem 1.25rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .proj-svg-wrap svg {
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+        }
+
+        .proj-chips-in-card {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            padding: 2.5rem 1.25rem 1.25rem;
+            background: linear-gradient(to top, rgba(12,12,12,0.92) 0%, rgba(12,12,12,0.6) 55%, transparent 100%);
+        }
 
         .chip-on-dark {
             border-radius: 9999px;
@@ -640,13 +658,8 @@
         }
         @media (min-width: 768px) { .chip-on-dark { font-size: 0.675rem; } }
 
-        /* Gradient accent backgrounds per project */
-        .grad-rag    { background: linear-gradient(135deg, #0d1f3c 0%, #1a3a5c 50%, #0a2a4a 100%); }
-        .grad-gpt    { background: linear-gradient(135deg, #1a0d3c 0%, #2d1a5c 50%, #1a0a4a 100%); }
-        .grad-fed    { background: linear-gradient(135deg, #0d3c1a 0%, #1a5c2d 50%, #0a4a1a 100%); }
-        .grad-star   { background: linear-gradient(135deg, #3c2a0d 0%, #5c421a 50%, #4a300a 100%); }
-        .grad-code   { background: linear-gradient(135deg, #1a1a3c 0%, #2d2d5c 50%, #1a1a4a 100%); }
-        .grad-heart  { background: linear-gradient(135deg, #3c0d1a 0%, #5c1a2d 50%, #4a0a1a 100%); }
+        /* Accent box base */
+        .proj-accent-bg { background: rgba(215,226,234,0.03); border: 1px solid rgba(215,226,234,0.09); }
 
         /* ─────────────────── CONTACT ─────────────────── */
         #contact {
@@ -998,7 +1011,45 @@
                             <p class="proj-desc-text">Page-level classifier with three chunking strategies improved retrieval precision by <strong>17%</strong> over semantic-only baselines. Deployed via FastAPI on Docker containers.</p>
                         </div>
                     </div>
-                    <div class="proj-accent-box grad-rag">
+                    <div class="proj-accent-box proj-accent-bg">
+                        <div class="proj-svg-wrap">
+                            <svg viewBox="0 0 320 240" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                <defs><radialGradient id="bg01" cx="55%" cy="50%" r="65%"><stop offset="0%" stop-color="#5B9EDE" stop-opacity="0.14"/><stop offset="100%" stop-color="#5B9EDE" stop-opacity="0"/></radialGradient></defs>
+                                <rect x="0" y="0" width="320" height="240" fill="url(#bg01)"/>
+                                <!-- Stacked document layers -->
+                                <rect x="22" y="38" width="96" height="124" rx="7" stroke="rgba(215,226,234,0.15)" stroke-width="1.5"/>
+                                <rect x="34" y="26" width="96" height="124" rx="7" stroke="rgba(215,226,234,0.25)" stroke-width="1.5"/>
+                                <rect x="46" y="14" width="96" height="124" rx="7" stroke="rgba(215,226,234,0.45)" stroke-width="1.5" fill="rgba(215,226,234,0.03)"/>
+                                <!-- Text lines on front doc -->
+                                <line x1="60" y1="36" x2="128" y2="36" stroke="rgba(215,226,234,0.45)" stroke-width="1.5"/>
+                                <line x1="60" y1="50" x2="122" y2="50" stroke="rgba(215,226,234,0.28)" stroke-width="1.5"/>
+                                <line x1="60" y1="64" x2="128" y2="64" stroke="rgba(215,226,234,0.38)" stroke-width="1.5"/>
+                                <line x1="60" y1="78" x2="110" y2="78" stroke="rgba(215,226,234,0.25)" stroke-width="1.5"/>
+                                <!-- Highlighted row (retrieved chunk) — blue accent -->
+                                <rect x="58" y="88" width="76" height="14" rx="3" fill="rgba(91,158,222,0.15)"/>
+                                <line x1="60" y1="95" x2="128" y2="95" stroke="rgba(91,158,222,0.9)" stroke-width="1.5"/>
+                                <line x1="60" y1="110" x2="118" y2="110" stroke="rgba(215,226,234,0.28)" stroke-width="1.5"/>
+                                <!-- Arrow -->
+                                <path d="M155 80 L178 80" stroke="#5B9EDE" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M171 73 L180 80 L171 87" stroke="#5B9EDE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                                <!-- Chat response card -->
+                                <rect x="192" y="18" width="114" height="106" rx="10" stroke="rgba(91,158,222,0.45)" stroke-width="1.5" fill="rgba(91,158,222,0.04)"/>
+                                <line x1="206" y1="40" x2="292" y2="40" stroke="rgba(215,226,234,0.38)" stroke-width="1.5"/>
+                                <line x1="206" y1="55" x2="284" y2="55" stroke="rgba(215,226,234,0.25)" stroke-width="1.5"/>
+                                <line x1="206" y1="70" x2="292" y2="70" stroke="rgba(215,226,234,0.32)" stroke-width="1.5"/>
+                                <line x1="206" y1="85" x2="274" y2="85" stroke="rgba(215,226,234,0.22)" stroke-width="1.5"/>
+                                <!-- Citation dots -->
+                                <circle cx="207" cy="106" r="3.5" fill="#5B9EDE"/>
+                                <circle cx="218" cy="106" r="3.5" fill="rgba(91,158,222,0.6)"/>
+                                <circle cx="229" cy="106" r="3.5" fill="rgba(91,158,222,0.3)"/>
+                                <!-- Faithfulness badge -->
+                                <rect x="192" y="148" width="114" height="32" rx="8" fill="rgba(91,158,222,0.08)" stroke="rgba(91,158,222,0.35)" stroke-width="1"/>
+                                <text x="249" y="162" fill="#5B9EDE" font-size="13" font-family="Kanit,sans-serif" font-weight="700" text-anchor="middle">0.89 Faithfulness</text>
+                                <text x="249" y="174" fill="rgba(91,158,222,0.55)" font-size="9" font-family="Kanit,sans-serif" letter-spacing="1.5" text-anchor="middle">RAGAS EVAL</text>
+                                <!-- Bottom label -->
+                                <text x="160" y="220" fill="rgba(215,226,234,0.25)" font-size="8.5" font-family="Kanit,sans-serif" letter-spacing="2" text-anchor="middle">HYBRID RETRIEVAL · 2,494 CHUNKS</text>
+                            </svg>
+                        </div>
                         <div class="proj-chips-in-card">
                             <span class="chip-on-dark">Python</span>
                             <span class="chip-on-dark">FastAPI</span>
@@ -1007,7 +1058,6 @@
                             <span class="chip-on-dark">Azure</span>
                             <span class="chip-on-dark">Docker</span>
                             <span class="chip-on-dark">Agentic RAG</span>
-                            <span class="chip-on-dark">RAGAS</span>
                         </div>
                     </div>
                 </div>
@@ -1036,13 +1086,55 @@
                             <p class="proj-desc-text">Achieved <strong>92% next-token prediction accuracy</strong>. Trained on custom text datasets to understand language modeling objectives, loss convergence, and perplexity evaluation.</p>
                         </div>
                     </div>
-                    <div class="proj-accent-box grad-gpt">
+                    <div class="proj-accent-box proj-accent-bg">
+                        <div class="proj-svg-wrap">
+                            <svg viewBox="0 0 320 240" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                <defs><radialGradient id="bg02" cx="40%" cy="50%" r="65%"><stop offset="0%" stop-color="#9B7FE8" stop-opacity="0.14"/><stop offset="100%" stop-color="#9B7FE8" stop-opacity="0"/></radialGradient></defs>
+                                <rect x="0" y="0" width="320" height="240" fill="url(#bg02)"/>
+                                <!-- Attention heatmap 5x5 — diagonal high-attention = violet -->
+                                <!-- Row 1 -->
+                                <rect x="30" y="16" width="34" height="34" rx="4" fill="rgba(155,127,232,0.75)"/>
+                                <rect x="70" y="16" width="34" height="34" rx="4" fill="rgba(215,226,234,0.08)"/>
+                                <rect x="110" y="16" width="34" height="34" rx="4" fill="rgba(215,226,234,0.04)"/>
+                                <rect x="150" y="16" width="34" height="34" rx="4" fill="rgba(215,226,234,0.03)"/>
+                                <rect x="190" y="16" width="34" height="34" rx="4" fill="rgba(215,226,234,0.06)"/>
+                                <!-- Row 2 -->
+                                <rect x="30" y="56" width="34" height="34" rx="4" fill="rgba(215,226,234,0.08)"/>
+                                <rect x="70" y="56" width="34" height="34" rx="4" fill="rgba(155,127,232,0.68)"/>
+                                <rect x="110" y="56" width="34" height="34" rx="4" fill="rgba(215,226,234,0.06)"/>
+                                <rect x="150" y="56" width="34" height="34" rx="4" fill="rgba(215,226,234,0.03)"/>
+                                <rect x="190" y="56" width="34" height="34" rx="4" fill="rgba(215,226,234,0.08)"/>
+                                <!-- Row 3 -->
+                                <rect x="30" y="96" width="34" height="34" rx="4" fill="rgba(215,226,234,0.04)"/>
+                                <rect x="70" y="96" width="34" height="34" rx="4" fill="rgba(215,226,234,0.08)"/>
+                                <rect x="110" y="96" width="34" height="34" rx="4" fill="rgba(155,127,232,0.74)"/>
+                                <rect x="150" y="96" width="34" height="34" rx="4" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="190" y="96" width="34" height="34" rx="4" fill="rgba(215,226,234,0.04)"/>
+                                <!-- Row 4 -->
+                                <rect x="30" y="136" width="34" height="34" rx="4" fill="rgba(215,226,234,0.03)"/>
+                                <rect x="70" y="136" width="34" height="34" rx="4" fill="rgba(215,226,234,0.04)"/>
+                                <rect x="110" y="136" width="34" height="34" rx="4" fill="rgba(215,226,234,0.08)"/>
+                                <rect x="150" y="136" width="34" height="34" rx="4" fill="rgba(155,127,232,0.65)"/>
+                                <rect x="190" y="136" width="34" height="34" rx="4" fill="rgba(215,226,234,0.05)"/>
+                                <!-- Row 5 -->
+                                <rect x="30" y="176" width="34" height="34" rx="4" fill="rgba(215,226,234,0.05)"/>
+                                <rect x="70" y="176" width="34" height="34" rx="4" fill="rgba(215,226,234,0.03)"/>
+                                <rect x="110" y="176" width="34" height="34" rx="4" fill="rgba(215,226,234,0.04)"/>
+                                <rect x="150" y="176" width="34" height="34" rx="4" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="190" y="176" width="34" height="34" rx="4" fill="rgba(155,127,232,0.62)"/>
+                                <!-- Right panel -->
+                                <line x1="242" y1="16" x2="242" y2="210" stroke="rgba(215,226,234,0.1)" stroke-width="1"/>
+                                <text x="281" y="60" fill="rgba(155,127,232,0.7)" font-size="9" font-family="Kanit,sans-serif" letter-spacing="1.5" text-anchor="middle">MULTI-HEAD</text>
+                                <text x="281" y="73" fill="rgba(155,127,232,0.7)" font-size="9" font-family="Kanit,sans-serif" letter-spacing="1.5" text-anchor="middle">ATTENTION</text>
+                                <text x="281" y="130" fill="#9B7FE8" font-size="22" font-family="Kanit,sans-serif" font-weight="700" text-anchor="middle">92%</text>
+                                <text x="281" y="146" fill="rgba(155,127,232,0.5)" font-size="8.5" font-family="Kanit,sans-serif" letter-spacing="1" text-anchor="middle">ACCURACY</text>
+                            </svg>
+                        </div>
                         <div class="proj-chips-in-card">
                             <span class="chip-on-dark">Python</span>
                             <span class="chip-on-dark">PyTorch</span>
                             <span class="chip-on-dark">NumPy</span>
                             <span class="chip-on-dark">Transformers</span>
-                            <span class="chip-on-dark">Multi-Head Attention</span>
                         </div>
                     </div>
                 </div>
@@ -1071,13 +1163,43 @@
                             <p class="proj-desc-text">Improved global node classification accuracy by <strong>8%</strong> over non-federated baselines. Reduced experimentation time by 25% with zero raw node or edge features shared between clients.</p>
                         </div>
                     </div>
-                    <div class="proj-accent-box grad-fed">
+                    <div class="proj-accent-box proj-accent-bg">
+                        <div class="proj-svg-wrap">
+                            <svg viewBox="0 0 320 240" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                <defs><radialGradient id="bg03" cx="50%" cy="47%" r="55%"><stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.12"/><stop offset="100%" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient></defs>
+                                <rect x="0" y="0" width="320" height="240" fill="url(#bg03)"/>
+                                <!-- Central aggregation server — teal -->
+                                <circle cx="160" cy="112" r="24" stroke="#2DD4BF" stroke-width="2" fill="rgba(45,212,191,0.08)"/>
+                                <circle cx="160" cy="112" r="14" stroke="rgba(45,212,191,0.4)" stroke-width="1" fill="rgba(45,212,191,0.05)"/>
+                                <text x="160" y="116" fill="rgba(45,212,191,0.85)" font-size="8" font-family="Kanit,sans-serif" text-anchor="middle" letter-spacing="0.5">SERVER</text>
+                                <!-- Client nodes (6 distributed) -->
+                                <!-- Top -->
+                                <circle cx="160" cy="30" r="14" stroke="rgba(45,212,191,0.5)" stroke-width="1.5" fill="rgba(45,212,191,0.05)"/>
+                                <line x1="160" y1="44" x2="160" y2="88" stroke="rgba(45,212,191,0.3)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                                <!-- Top-right -->
+                                <circle cx="240" cy="58" r="14" stroke="rgba(45,212,191,0.45)" stroke-width="1.5" fill="rgba(45,212,191,0.05)"/>
+                                <line x1="228" y1="67" x2="181" y2="96" stroke="rgba(45,212,191,0.28)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                                <!-- Bottom-right -->
+                                <circle cx="240" cy="166" r="14" stroke="rgba(45,212,191,0.45)" stroke-width="1.5" fill="rgba(45,212,191,0.05)"/>
+                                <line x1="228" y1="157" x2="181" y2="128" stroke="rgba(45,212,191,0.28)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                                <!-- Bottom -->
+                                <circle cx="160" cy="194" r="14" stroke="rgba(45,212,191,0.5)" stroke-width="1.5" fill="rgba(45,212,191,0.05)"/>
+                                <line x1="160" y1="180" x2="160" y2="136" stroke="rgba(45,212,191,0.3)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                                <!-- Bottom-left -->
+                                <circle cx="80" cy="166" r="14" stroke="rgba(45,212,191,0.45)" stroke-width="1.5" fill="rgba(45,212,191,0.05)"/>
+                                <line x1="92" y1="157" x2="139" y2="128" stroke="rgba(45,212,191,0.28)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                                <!-- Top-left -->
+                                <circle cx="80" cy="58" r="14" stroke="rgba(45,212,191,0.45)" stroke-width="1.5" fill="rgba(45,212,191,0.05)"/>
+                                <line x1="92" y1="67" x2="139" y2="96" stroke="rgba(45,212,191,0.28)" stroke-width="1.2" stroke-dasharray="4 4"/>
+                                <!-- Labels -->
+                                <text x="160" y="224" fill="rgba(45,212,191,0.38)" font-size="8.5" font-family="Kanit,sans-serif" letter-spacing="2" text-anchor="middle">10+ CLIENTS · ZERO DATA SHARING</text>
+                            </svg>
+                        </div>
                         <div class="proj-chips-in-card">
                             <span class="chip-on-dark">Python</span>
                             <span class="chip-on-dark">GNN</span>
                             <span class="chip-on-dark">FedAvg</span>
                             <span class="chip-on-dark">PyTorch</span>
-                            <span class="chip-on-dark">Graph ML</span>
                         </div>
                     </div>
                 </div>
@@ -1106,13 +1228,43 @@
                             <p class="proj-desc-text">Reduced equity analyst research time by <strong>30%</strong> using Hugging Face transformers and streamlined Pandas/Scikit-Learn data pipelines.</p>
                         </div>
                     </div>
-                    <div class="proj-accent-box grad-star">
+                    <div class="proj-accent-box proj-accent-bg">
+                        <div class="proj-svg-wrap">
+                            <svg viewBox="0 0 320 240" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                <defs><radialGradient id="bg04" cx="75%" cy="30%" r="65%"><stop offset="0%" stop-color="#F5A623" stop-opacity="0.13"/><stop offset="100%" stop-color="#F5A623" stop-opacity="0"/></radialGradient></defs>
+                                <rect x="0" y="0" width="320" height="240" fill="url(#bg04)"/>
+                                <!-- Axes -->
+                                <line x1="36" y1="190" x2="294" y2="190" stroke="rgba(215,226,234,0.22)" stroke-width="1"/>
+                                <line x1="36" y1="190" x2="36" y2="18" stroke="rgba(215,226,234,0.22)" stroke-width="1"/>
+                                <!-- Grid lines -->
+                                <line x1="36" y1="148" x2="294" y2="148" stroke="rgba(215,226,234,0.07)" stroke-width="1"/>
+                                <line x1="36" y1="106" x2="294" y2="106" stroke="rgba(215,226,234,0.07)" stroke-width="1"/>
+                                <line x1="36" y1="64" x2="294" y2="64" stroke="rgba(215,226,234,0.07)" stroke-width="1"/>
+                                <!-- Area under line — amber -->
+                                <path d="M36 178 L80 164 L124 148 L168 122 L212 96 L256 62 L294 36 L294 190 L36 190 Z" fill="rgba(245,166,35,0.07)"/>
+                                <!-- Rising line -->
+                                <path d="M36 178 L80 164 L124 148 L168 122 L212 96 L256 62 L294 36" stroke="#F5A623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Data points -->
+                                <circle cx="36"  cy="178" r="4" fill="rgba(245,166,35,0.45)"/>
+                                <circle cx="80"  cy="164" r="4" fill="rgba(245,166,35,0.55)"/>
+                                <circle cx="124" cy="148" r="4" fill="rgba(245,166,35,0.65)"/>
+                                <circle cx="168" cy="122" r="4" fill="rgba(245,166,35,0.75)"/>
+                                <circle cx="212" cy="96"  r="4" fill="rgba(245,166,35,0.85)"/>
+                                <circle cx="256" cy="62"  r="4" fill="rgba(245,166,35,0.92)"/>
+                                <circle cx="294" cy="36"  r="6" fill="#F5A623" stroke="rgba(245,166,35,0.35)" stroke-width="2"/>
+                                <!-- Badge -->
+                                <rect x="230" y="46" width="76" height="28" rx="6" fill="rgba(245,166,35,0.1)" stroke="rgba(245,166,35,0.35)" stroke-width="1"/>
+                                <text x="268" y="58" fill="#F5A623" font-size="10" font-family="Kanit,sans-serif" font-weight="600" text-anchor="middle">−30% time</text>
+                                <text x="268" y="69" fill="rgba(245,166,35,0.55)" font-size="8" font-family="Kanit,sans-serif" text-anchor="middle">research saved</text>
+                                <!-- X-axis ticks -->
+                                <text x="160" y="208" fill="rgba(245,166,35,0.38)" font-size="8.5" font-family="Kanit,sans-serif" letter-spacing="2" text-anchor="middle">100+ URLs/DAY · FAISS VECTOR SEARCH</text>
+                            </svg>
+                        </div>
                         <div class="proj-chips-in-card">
                             <span class="chip-on-dark">LangChain</span>
                             <span class="chip-on-dark">OpenAI</span>
                             <span class="chip-on-dark">FAISS</span>
                             <span class="chip-on-dark">Streamlit</span>
-                            <span class="chip-on-dark">Hugging Face</span>
                         </div>
                     </div>
                 </div>
@@ -1141,7 +1293,46 @@
                             <p class="proj-desc-text">Generates contextual review feedback that accelerates manual code review workflows and boosts developer productivity through AI-powered contextual suggestions.</p>
                         </div>
                     </div>
-                    <div class="proj-accent-box grad-code">
+                    <div class="proj-accent-box proj-accent-bg">
+                        <div class="proj-svg-wrap">
+                            <svg viewBox="0 0 320 240" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                <defs><radialGradient id="bg05" cx="70%" cy="35%" r="60%"><stop offset="0%" stop-color="#34D399" stop-opacity="0.12"/><stop offset="100%" stop-color="#34D399" stop-opacity="0"/></radialGradient></defs>
+                                <rect x="0" y="0" width="320" height="240" fill="url(#bg05)"/>
+                                <!-- Editor frame -->
+                                <rect x="18" y="14" width="200" height="188" rx="10" stroke="rgba(215,226,234,0.28)" stroke-width="1.5" fill="rgba(215,226,234,0.03)"/>
+                                <!-- Top bar -->
+                                <line x1="18" y1="38" x2="218" y2="38" stroke="rgba(215,226,234,0.14)" stroke-width="1"/>
+                                <circle cx="34" cy="26" r="4.5" fill="rgba(215,226,234,0.18)"/>
+                                <circle cx="49" cy="26" r="4.5" fill="rgba(215,226,234,0.12)"/>
+                                <circle cx="64" cy="26" r="4.5" fill="rgba(215,226,234,0.1)"/>
+                                <!-- Removed line (red tint) -->
+                                <rect x="28" y="50" width="180" height="18" rx="3" fill="rgba(200,80,80,0.1)"/>
+                                <text x="35" y="63" fill="rgba(220,100,100,0.65)" font-size="10.5" font-family="monospace">- old_review_logic()</text>
+                                <!-- Added line (green tint) -->
+                                <rect x="28" y="73" width="180" height="18" rx="3" fill="rgba(60,180,80,0.1)"/>
+                                <text x="35" y="86" fill="rgba(80,200,100,0.65)" font-size="10.5" font-family="monospace">+ gpt4o_review(diff)</text>
+                                <!-- Neutral lines -->
+                                <rect x="28" y="100" width="140" height="10" rx="2" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="28" y="116" width="168" height="10" rx="2" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="28" y="132" width="118" height="10" rx="2" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="28" y="148" width="155" height="10" rx="2" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="28" y="164" width="130" height="10" rx="2" fill="rgba(215,226,234,0.07)"/>
+                                <rect x="28" y="180" width="160" height="10" rx="2" fill="rgba(215,226,234,0.07)"/>
+                                <!-- AI review panel -->
+                                <rect x="234" y="40" width="72" height="100" rx="9" stroke="rgba(215,226,234,0.3)" stroke-width="1.5" fill="rgba(215,226,234,0.04)"/>
+                                <!-- Check circle — green -->
+                                <circle cx="270" cy="76" r="19" stroke="#34D399" stroke-width="1.5" fill="rgba(52,211,153,0.08)"/>
+                                <path d="M261 76 L268 83 L280 68" stroke="#34D399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <text x="270" y="114" fill="rgba(52,211,153,0.75)" font-size="8" font-family="Kanit,sans-serif" letter-spacing="1" text-anchor="middle">GPT-4o</text>
+                                <text x="270" y="124" fill="rgba(52,211,153,0.5)" font-size="8" font-family="Kanit,sans-serif" letter-spacing="0.5" text-anchor="middle">REVIEW</text>
+                                <!-- Git diff badge -->
+                                <rect x="234" y="152" width="72" height="28" rx="6" fill="rgba(215,226,234,0.06)" stroke="rgba(215,226,234,0.18)" stroke-width="1"/>
+                                <text x="270" y="164" fill="rgba(215,226,234,0.6)" font-size="9" font-family="Kanit,sans-serif" text-anchor="middle">git diff</text>
+                                <text x="270" y="175" fill="rgba(215,226,234,0.35)" font-size="8" font-family="Kanit,sans-serif" text-anchor="middle">analysis</text>
+                                <!-- Label -->
+                                <text x="160" y="222" fill="rgba(215,226,234,0.25)" font-size="8.5" font-family="Kanit,sans-serif" letter-spacing="2" text-anchor="middle">AI-POWERED · CONTEXTUAL REVIEW</text>
+                            </svg>
+                        </div>
                         <div class="proj-chips-in-card">
                             <span class="chip-on-dark">Python</span>
                             <span class="chip-on-dark">FastAPI</span>
@@ -1175,7 +1366,43 @@
                             <p class="proj-desc-text">PCHF feature engineering enhances exploratory depth and outperforms conventional models for early disease detection in healthcare AI applications.</p>
                         </div>
                     </div>
-                    <div class="proj-accent-box grad-heart">
+                    <div class="proj-accent-box proj-accent-bg">
+                        <div class="proj-svg-wrap">
+                            <svg viewBox="0 0 320 240" fill="none" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+                                <defs><radialGradient id="bg06" cx="50%" cy="40%" r="65%"><stop offset="0%" stop-color="#F87171" stop-opacity="0.13"/><stop offset="100%" stop-color="#F87171" stop-opacity="0"/></radialGradient></defs>
+                                <rect x="0" y="0" width="320" height="240" fill="url(#bg06)"/>
+                                <!-- Grid lines -->
+                                <line x1="20" y1="60" x2="300" y2="60" stroke="rgba(215,226,234,0.06)" stroke-width="1"/>
+                                <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(215,226,234,0.06)" stroke-width="1"/>
+                                <line x1="20" y1="120" x2="300" y2="120" stroke="rgba(215,226,234,0.06)" stroke-width="1"/>
+                                <line x1="20" y1="150" x2="300" y2="150" stroke="rgba(215,226,234,0.06)" stroke-width="1"/>
+                                <line x1="20" y1="180" x2="300" y2="180" stroke="rgba(215,226,234,0.06)" stroke-width="1"/>
+                                <line x1="60" y1="50" x2="60" y2="195" stroke="rgba(215,226,234,0.05)" stroke-width="1"/>
+                                <line x1="110" y1="50" x2="110" y2="195" stroke="rgba(215,226,234,0.05)" stroke-width="1"/>
+                                <line x1="160" y1="50" x2="160" y2="195" stroke="rgba(215,226,234,0.05)" stroke-width="1"/>
+                                <line x1="210" y1="50" x2="210" y2="195" stroke="rgba(215,226,234,0.05)" stroke-width="1"/>
+                                <line x1="260" y1="50" x2="260" y2="195" stroke="rgba(215,226,234,0.05)" stroke-width="1"/>
+                                <!-- Area fill under ECG — rose -->
+                                <path d="M20 120 L55 120 L60 118 L65 122 L70 50 L76 175 L80 120 L100 120 L104 118 L108 122 L112 52 L118 173 L122 120 L150 120 L154 118 L158 122 L162 52 L168 173 L172 120 L200 120 L204 118 L208 122 L212 52 L218 173 L222 120 L260 120 L300 120 L300 195 L20 195 Z" fill="rgba(248,113,113,0.06)"/>
+                                <!-- ECG Waveform path -->
+                                <path d="M20 120 L55 120 L60 118 L65 122 L70 50 L76 175 L80 120 L100 120 L104 118 L108 122 L112 52 L118 173 L122 120 L150 120 L154 118 L158 122 L162 52 L168 173 L172 120 L200 120 L204 118 L208 122 L212 52 L218 173 L222 120 L260 120 L300 120"
+                                    stroke="#F87171" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <!-- Pulse dot at peak -->
+                                <circle cx="162" cy="52" r="5" fill="rgba(248,113,113,0.2)" stroke="#F87171" stroke-width="2"/>
+                                <!-- Axis labels -->
+                                <text x="20" y="208" fill="rgba(248,113,113,0.35)" font-size="8" font-family="Kanit,sans-serif">time (ms)</text>
+                                <!-- Accuracy badge -->
+                                <rect x="224" y="40" width="72" height="44" rx="9" fill="rgba(248,113,113,0.08)" stroke="rgba(248,113,113,0.4)" stroke-width="1.5"/>
+                                <text x="260" y="59" fill="#F87171" font-size="15" font-weight="700" font-family="Kanit,sans-serif" text-anchor="middle">99.7%</text>
+                                <text x="260" y="75" fill="rgba(248,113,113,0.55)" font-size="8" font-family="Kanit,sans-serif" letter-spacing="1" text-anchor="middle">ACCURACY</text>
+                                <!-- Model badge -->
+                                <rect x="224" y="96" width="72" height="28" rx="6" fill="rgba(215,226,234,0.04)" stroke="rgba(215,226,234,0.12)" stroke-width="1"/>
+                                <text x="260" y="108" fill="rgba(215,226,234,0.45)" font-size="8" font-family="Kanit,sans-serif" text-anchor="middle">LightGBM</text>
+                                <text x="260" y="118" fill="rgba(215,226,234,0.3)" font-size="7.5" font-family="Kanit,sans-serif" text-anchor="middle">+ PCHF feats</text>
+                                <!-- Label -->
+                                <text x="160" y="222" fill="rgba(215,226,234,0.25)" font-size="8.5" font-family="Kanit,sans-serif" letter-spacing="2" text-anchor="middle">EARLY HEART FAILURE · DETECTION</text>
+                            </svg>
+                        </div>
                         <div class="proj-chips-in-card">
                             <span class="chip-on-dark">Python</span>
                             <span class="chip-on-dark">Scikit-Learn</span>
